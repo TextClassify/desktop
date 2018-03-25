@@ -2,7 +2,7 @@
 
 基于`electron`开发，拟定开发`Mac`版本和`Windows`版本。
 
-## 开发说明
+## 开发环境
 
 ### 安装依赖
 
@@ -10,11 +10,20 @@
 $ yarn
 ```
 
-### 开发环境
+### 启动编译环境
 
 ```
 $ yarn start
+
 ```
+
+### 启动electron
+
+```
+$ yarn electron
+```
+
+## 构建
 
 ### 构建Web
 
@@ -22,8 +31,4 @@ $ yarn start
 $ yarn build
 ```
 
-### 运行`electron`
-
-```
-$ yarn run-electron
-```
+### 打包应用
