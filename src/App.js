@@ -1,15 +1,10 @@
+/* eslint-disable import/first */
 import React, { Component } from 'react';
-import {Route} from 'react-router-dom';
+import {Link} from 'react-router';
 import {Button,Layout,Icon} from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
-const path = require('path');
-
-/* eslint-disable import/first */
-
 import SideBar from './components/SideBar/Sidebar';
-import Home from './components/Home/Home';
-import Add from './components/Add/Add';
-import Search from './components/Search/Search';
+const path = require('path');
 
 class App extends Component {
   constructor(props){
@@ -33,9 +28,7 @@ class App extends Component {
           </Sider>
 
           <Content>
-            <Route exact path="/" component={Home}/>
-            <Route path="/add" component={Add}/>
-            <Route path="/search" component={Search}/>
+            {this.props.children}
           </Content>
           
           <button hidden onClick={()=> this.getFile()}>获取文件</button>

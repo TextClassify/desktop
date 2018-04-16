@@ -7,9 +7,10 @@ import Search from './components/Search/Search'
 
 const routes = (
     <Route path="/" component={App}>
-        <Route exact path="/" component={Home} />
-        <Route path="add" component={Add} />
-        <Route path="search" component={Search} />
+        <IndexRoute component={Home}/>
+        <Route path="/home" component={Home}/>
+        <Route path="/add" component={Add}/>
+        <Route path="/search" component={Search}/>
     </Route>
 );
 
