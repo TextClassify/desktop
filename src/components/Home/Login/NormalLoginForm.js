@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import 'whatwg-fetch'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 require('./login.css');
 const FormItem = Form.Item;
 
