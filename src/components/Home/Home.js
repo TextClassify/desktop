@@ -7,9 +7,7 @@ import Detail from '../Detail/detail';
 const fs = require('fs');
 const csv = require('csvtojson');
 
-const toLocalStorage = "/Users/laoqiren/textClassfiy/result.csv",
-    toLocalStorageContent = "/Users/laoqiren/textClassfiy/resultContent.csv";
-
+const { toLocalStorage, toLocalStorageContent } = require('../../config');
 class Home extends Component {
     constructor(props){
         super(props);

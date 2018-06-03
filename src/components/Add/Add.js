@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import API from "../../API/api";
 import { Input, Button } from 'antd';
 const fs = require('fs');
+const path = require('path');
+const { toLocalStorage, toLocalStorageContent } = require('../../config');
 const { Search, TextArea} = Input;
-
-const toLocalStorage = "/Users/laoqiren/textClassfiy/result.csv",
-    toLocalStorageContent = "/Users/laoqiren/textClassfiy/resultContent.csv";
 
 class Add extends Component {
     constructor(props){
@@ -13,6 +12,7 @@ class Add extends Component {
         this.state = {
             isLoading: false,
             isFile: false,
+            inputTitle: '',
             inputContent: null,
             selectFile: null,
             classifyResult: null
@@ -61,10 +61,13 @@ class Add extends Component {
 
                     if(!isEnter) {
                         let toWriteContent = `\n${this.state.selectFile},${classResult}`;
-                        fs.appendFile(toLocalStorage,toWriteContent);
+                        fs.appendFile(toLocalStorage,toWriteContent,()=>{});
                     } else {
-                        let toWriteContent = `\n"${this.state.inputContent}",${classResult}`;
-                        fs.appendFile(toLocalStorageContent,toWriteContent);
+                        let toWritePath = path.join(toLocalStorageContent,this.state.inputTitle);
+                        fs.writeFile(toWritePath,this.state.inputContent,()=>{});
+
+                        let toWriteContent = `\n${toWritePath},${classResult}`;
+                        fs.appendFile(toLocalStorage,toWriteContent,()=>{});
                     }
                 }
             }
@@ -94,8 +97,9 @@ class Add extends Component {
                 {
                     !this.state.isFile && (
                         <div>
-                            <TextArea rows={4} onChange={e=> this.setState({inputContent: e.target.value})} />
-                            <Button type="primary" onClick={ e=> this.handleCommit(this.state.inputContent,true)}>提交分类</Button>
+                            <Input placeholder="输入标题" onChange={e=>this.setState({inputTitle: e.target.value})} value={this.state.inputTitle}/><br/><br/>
+                            <TextArea rows={4} value={this.state.inputContent} onChange={e=> this.setState({inputContent: e.target.value})} />
+                            <Button type="primary" disabled={!this.state.inputContent} onClick={ e=> this.handleCommit(this.state.inputContent,true)}>提交分类</Button>
                             <Button type="primary" onClick={()=>this.setState({isFile: true})}>本地文件</Button>
                         </div>
                     )
@@ -111,6 +115,7 @@ class Add extends Component {
                             value={this.state.selectFile}
                             onSearch={() => this.showFileDialog()}
                             />
+                            <br/><br/>
                             <Button type="primary" onClick={()=> this.handleSubmit()} disabled={!this.state.selectFile}>提交分类</Button>
                             <Button type="primary" onClick={()=>this.setState({isFile: false})}>手动输入内容</Button>
                         </div>

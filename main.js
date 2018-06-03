@@ -1,9 +1,18 @@
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
-const url = require('url')
+const {app, BrowserWindow} = require('electron');
+const path = require('path');
+const url = require('url');
+const fs = require('fs');
+
+const toWriteResult = require('./src/config').toLocalStorage;
 
 function createWindow () {
     // Create the browser window.
+    fs.access(toWriteResult, fs.constants.R_OK | fs.constants.W_OK, (err) => {
+        if(err){
+            fs.writeFileSync(toWriteResult,"path,class");
+        }
+    });
+
     win = new BrowserWindow({width: 800, height: 600});
     win.webContents.openDevTools();
 
