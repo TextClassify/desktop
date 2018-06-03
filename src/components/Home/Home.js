@@ -1,43 +1,69 @@
 /* eslint-disable import/first */
 import React, { Component } from 'react';
-import {Button,Layout,Steps,Icon} from 'antd';
-const Step = Steps.Step;
+import { Row, Col, List, Avatar } from 'antd';
 import {Link} from 'react-router';
+import Detail from '../Detail/detail';
+
+const fs = require('fs');
+const csv = require('csvtojson');
+
+const toLocalStorage = "/Users/laoqiren/textClassfiy/result.csv",
+    toLocalStorageContent = "/Users/laoqiren/textClassfiy/resultContent.csv";
 
 class Home extends Component {
     constructor(props){
         super(props);
         this.state={
-            user:"",
-        };
+            data: [],
+            selectedIndex: 0
+        }
+     }
+     transferPath(_path){
+        let arr =  _path.split("/");
+        return arr[arr.length - 1];
+     }
+     componentDidMount(){
+        csv()
+            .fromFile(toLocalStorage)
+            .then(jsonObj=>{
+                this.setState({
+                    data: jsonObj.reverse()
+                });
+            });
      }
      render(){
-         if (this.state.user=="") {
-             return (
-                 <div>
-                     <h1>基于机器学习方法的文本自动分类项目-Desktop</h1>
-                     <Steps style={{maxWidth: '600px',marginLeft: '100px'}}>
-                     <Step status="finish" title={<Link to="/NormalLoginForm" onClick={()=>this.setState({user:"123"})}>登陆</Link>} icon={<Icon type="user" />} />
-                     <Step status="finish" title={<Link to="/importText">导入内容</Link>} icon={<Icon type="solution" />} />
-                     <Step status="process" title="自动分类" icon={<Icon type="loading" />} />
-                     <Step status="wait" title="Done" icon={<Icon type="smile-o" />} />
-                     </Steps>
-                     <Link to="/add">跳转到添加</Link>
-                 </div>
-             )
-         }else{
-             return (
-                 <div>
-                     <h1>基于机器学习方法的文本自动分类项目-Desktop</h1>
-                     <Steps style={{maxWidth: '600px',marginLeft: '100px'}}>
-                     <Step status="finish" title={<Link to="/importText">导入内容</Link>} icon={<Icon type="solution" />} />
-                     <Step status="process" title="自动分类" icon={<Icon type="loading" />} />
-                     <Step status="wait" title="Done" icon={<Icon type="smile-o" />} />
-                     </Steps>
-                     <Link to="/add">跳转到添加</Link>
-                 </div>
-             )
-         }
+         return (
+            <div>
+                <Row>
+                    <Col span={8}>
+                        <div style={{padding: '0 20',borderRight: '1px solid #D3D3D3'}}>
+                            <h2 style={{borderBottom: '1px dotted gray'}}>我的收藏</h2>
+                            <List
+                                className="demo-loadmore-list"
+                                itemLayout="horizontal"
+                                dataSource={this.state.data}
+                                renderItem={(item,i) => (
+                                <List.Item onClick={()=>this.setState({
+                                    selectedIndex: i
+                                })} >
+                                    <List.Item.Meta
+                                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                                    title={<span>{this.transferPath(item.path)}</span>}
+                                    description={item.class}
+                                    />
+                                </List.Item>
+                                )}
+                            />
+                        </div>
+                    </Col>
+                    <Col span={16}>
+                        {
+                            this.state.data.length>0 && <Detail path={this.state.data[this.state.selectedIndex]['path']}/>
+                        }
+                    </Col>
+                </Row>
+            </div>
+         )
      }
 }
 

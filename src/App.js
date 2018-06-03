@@ -4,7 +4,6 @@ import {Link} from 'react-router';
 import {Button,Layout,Icon} from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import SideBar from './components/SideBar/Sidebar';
-const path = require('path');
 
 class App extends Component {
   constructor(props){
@@ -13,26 +12,22 @@ class App extends Component {
       fileContent: ''
     }
   }
-  getFile() {
-    let dir = path.resolve(__dirname,'./test.txt');
-    this.setState({
-      fileContent: dir
-    })
-  }
   render() {
     return (
       <div className="App">
         <Layout>
-          <Sider>
-            <SideBar/>
-          </Sider>
-
-          <Content>
-            {this.props.children}
-          </Content>
+          <Header className="header">
+            <h1 style={{color: 'white'}}>文本分类助手</h1>
+          </Header>
+          <Layout>
+            <Sider style={{backgroundColor: 'white'}}>
+              <SideBar/>
+            </Sider>
+            <Content>
+              {this.props.children}
+            </Content>
+          </Layout>
           
-          <button hidden onClick={()=> this.getFile()}>获取文件</button>
-          {this.state.fileContent}
         </Layout>
       </div>
     );
