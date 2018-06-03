@@ -30,7 +30,6 @@ class Detail extends Component {
     render(){
         return (
             <div style={{padding: 20}}>
-                文章详情
                 {
                     this.state.content
                 }

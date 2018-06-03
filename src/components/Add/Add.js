@@ -21,7 +21,7 @@ class Add extends Component {
     showFileDialog(){
         const dialog = require('electron').remote.dialog
         dialog.showOpenDialog({ properties: ['openFile'] }, (filename) => {
-            this.setState({selectFile: filename[0]});
+            filename && this.setState({selectFile: filename[0]});
         });
     }
     handleSubmit(){
