@@ -90,7 +90,7 @@ class Add extends Component {
     render() {
         return (
             <div>
-                添加收藏
+                <h2>添加收藏</h2>
                 {
                     !this.state.isFile && (
                         <div>

@@ -27,7 +27,7 @@ class Sider extends Component {
         <Menu.Item key="1"><Link to="/"><Icon type="user" style={Style.iconStyle}/>首页</Link></Menu.Item>
         <Menu.Item key="2"><Link to="/add"><Icon type="plus-circle-o" style={Style.iconStyle}/>添加</Link></Menu.Item>
         <Menu.Item key="3"><Link to="/search"><Icon type="search" style={Style.iconStyle}/>搜索</Link></Menu.Item>
-        <Menu.Item key="4"><Link to="/search"><Icon type="star-o" style={Style.iconStyle}/>详情</Link></Menu.Item>
+        <Menu.Item key="4"><Link to="/about"><Icon type="star-o" style={Style.iconStyle}/>关于</Link></Menu.Item>
         
       </Menu>
     );

@@ -45,7 +45,7 @@ class Home extends Component {
                                 renderItem={(item,i) => (
                                 <List.Item onClick={()=>this.setState({
                                     selectedIndex: i
-                                })} >
+                                })} style={{backgroundColor: i===this.state.selectedIndex?'#D3D3D3':'' }}>
                                     <List.Item.Meta
                                     avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
                                     title={<span>{this.transferPath(item.path)}</span>}
