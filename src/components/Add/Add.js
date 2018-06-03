@@ -47,22 +47,23 @@ class Add extends Component {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    content: data
+                    text: data.toString()
                 })
             });
             if(res.ok){
                 let result = await res.json();
-                if(result.statusCode === 200) {
+                if(result.code === 0) {
+                    let classResult = this.selectClass(result.data);
                     this.setState({
                         isLoading: false,
-                        classifyResult: result.result
+                        classifyResult: classResult
                     });
 
                     if(!isEnter) {
-                        let toWriteContent = `\n${this.state.selectFile},${result.result}`;
+                        let toWriteContent = `\n${this.state.selectFile},${classResult}`;
                         fs.appendFile(toLocalStorage,toWriteContent);
                     } else {
-                        let toWriteContent = `\n"${this.state.inputContent}",${result.result}`;
+                        let toWriteContent = `\n"${this.state.inputContent}",${classResult}`;
                         fs.appendFile(toLocalStorageContent,toWriteContent);
                     }
                 }
@@ -73,6 +74,18 @@ class Add extends Component {
                 classifyOneText: "分类出错"
             });
         };
+    }
+    selectClass(resultObj){
+        let objToArr = Object.entries(resultObj).map(tup=>{
+            return {
+                className: tup[0],
+                percent: tup[1]
+            };
+        });
+        let sortedByPercent = objToArr.sort((obj1,obj2)=>{
+            return obj1.percent < obj2.percent;
+        });
+        return sortedByPercent[0]['className'];
     }
     render() {
         return (

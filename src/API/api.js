@@ -1,4 +1,4 @@
 export default {
-    host: "https://easy-mock.com/mock/5ad315b1ab86435b47be0417/api",
-    classifyOneText: "/classifyOneText"
+    host: "http://120.24.66.93:8088/api",
+    classifyOneText: "/oneText"
 }
