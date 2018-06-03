@@ -14,9 +14,6 @@ const Style = {
 }
 
 class Sider extends Component {
-  handleClick = (e) => {
-    console.log('click ', e);
-  }
   render() {
     return (
       <Menu
@@ -26,9 +23,9 @@ class Sider extends Component {
         defaultOpenKeys={['sub1']}
         mode="inline"
       >
-        <Menu.Item key="1"><Link to="/"><Icon type="user" style={Style.iconStyle}/></Link></Menu.Item>
-        <Menu.Item key="2"><Link to="/add"><Icon type="plus-circle-o" style={Style.iconStyle}/></Link></Menu.Item>
-        <Menu.Item key="3"><Link to="/search"><Icon type="search" style={Style.iconStyle}/></Link></Menu.Item>
+        <Menu.Item key="1"><Link to="/"><Icon type="user" style={Style.iconStyle}/>首页</Link></Menu.Item>
+        <Menu.Item key="2"><Link to="/add"><Icon type="plus-circle-o" style={Style.iconStyle}/>添加</Link></Menu.Item>
+        <Menu.Item key="3"><Link to="/search"><Icon type="search" style={Style.iconStyle}/>搜索</Link></Menu.Item>
         <Menu.Item key="4"><Icon type="star-o" style={Style.iconStyle}/></Menu.Item>
         
       </Menu>
