@@ -35,7 +35,7 @@ class Home extends Component {
                 <Row>
                     <Col span={8}>
                         <div style={{padding: '0 20',borderRight: '1px solid #D3D3D3'}}>
-                            <h2 style={{borderBottom: '1px dotted gray'}}>我的收藏</h2>
+                            <h2 style={{borderBottom: '1px dotted gray', padding: 20}}>我的收藏</h2>
                             <List
                                 className="demo-loadmore-list"
                                 itemLayout="horizontal"
@@ -56,7 +56,7 @@ class Home extends Component {
                     </Col>
                     <Col span={16}>
                         {
-                            this.state.data.length>0 && <Detail path={this.state.data[this.state.selectedIndex]['path']}/>
+                            this.state.data.length>0 && <Detail path={this.state.data[this.state.selectedIndex]['path']} />
                         }
                     </Col>
                 </Row>

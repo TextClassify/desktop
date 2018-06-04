@@ -51,7 +51,7 @@ class NormalLoginForm extends React.Component {
     render() {
       const { getFieldDecorator } = this.props.form;
       return (
-        <Form onSubmit={this.handleSubmit} className="login-form">
+        <Form onSubmit={this.handleSubmit} className="login-form" style={{padding: 20, textAlign: 'center'}}>
           <FormItem>
             {getFieldDecorator('userName', {
               rules: [{ required: true, message: 'Please input your username!' }],

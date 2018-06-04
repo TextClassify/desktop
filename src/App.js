@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 import {Button,Layout,Icon} from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 import SideBar from './components/SideBar/Sidebar';
+import HeaderComponent from './components/Header/Header';
 
 class App extends Component {
   constructor(props){
@@ -17,13 +18,13 @@ class App extends Component {
       <div className="App">
         <Layout>
           <Header className="header">
-            <h1 style={{color: 'white'}}>文本分类助手</h1>
+            <HeaderComponent/>
           </Header>
           <Layout>
             <Sider style={{backgroundColor: 'white'}}>
               <SideBar/>
             </Sider>
-            <Content>
+            <Content style={{minHeight: 1000}}>
               {this.props.children}
             </Content>
           </Layout>

@@ -100,29 +100,6 @@ class RegistrationForm extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { autoCompleteResult } = this.state;
-
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 8 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 16 },
-      },
-    };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    };
     const prefixSelector = getFieldDecorator('prefix', {
       initialValue: '86',
     })(
@@ -139,7 +116,6 @@ class RegistrationForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormItem
-          {...formItemLayout}
           label="邮箱"
         >
           {getFieldDecorator('email', {
@@ -153,7 +129,6 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
         <FormItem
-          {...formItemLayout}
           label="密码"
         >
           {getFieldDecorator('password', {
@@ -167,7 +142,6 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
         <FormItem
-          {...formItemLayout}
           label="确认密码"
         >
           {getFieldDecorator('confirm', {
@@ -181,7 +155,6 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
         <FormItem
-          {...formItemLayout}
           label={(
             <span>
               用户名&nbsp;
@@ -198,14 +171,14 @@ class RegistrationForm extends React.Component {
           )}
         </FormItem>
 
-        <FormItem {...tailFormItemLayout}>
+        <FormItem>
           {getFieldDecorator('agreement', {
             valuePropName: 'checked',
           })(
             <Checkbox>I have read the <a href="">agreement</a></Checkbox>
           )}
         </FormItem>
-        <FormItem {...tailFormItemLayout}>
+        <FormItem>
           <Button type="primary" htmlType="submit">Register</Button>
         </FormItem>
       </Form>
