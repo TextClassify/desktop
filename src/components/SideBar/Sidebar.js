@@ -7,7 +7,7 @@ const MenuItemGroup = Menu.ItemGroup;
 const Style = {
   mainStyle: {
     width: 200,
-    height: 400
+    height: '100%'
   },
   iconStyle: {
     fontSize: 30
@@ -18,7 +18,6 @@ class Sider extends Component {
   render() {
     return (
       <Menu
-        onClick={this.handleClick}
         style={Style.mainStyle}
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}

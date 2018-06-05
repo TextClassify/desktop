@@ -7,17 +7,29 @@ class Header extends Component {
     constructor(props){
         super(props);
         this.state = {
-            user: {
-
-            }
+            userInfo: this.props.userInfo
         }
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.userInfo.name !== this.props.userInfo.name){
+            this.setState({
+                userInfo: nextProps.userInfo
+            });
+        }
+    }
+    getAvatar(name){
+        return name ? name[0].toUpperCase() : '无'
     }
     render(){
         return (
             <div>
                 <Row>
                     <Col span={1}>
-                        <Link to="/user"><Avatar icon="user" /></Link>
+                        <Link to="/user">
+                            <Avatar style={{ backgroundColor: '#f56a00', verticalAlign: 'middle' }} size='large'>
+                                {this.getAvatar(this.state.userInfo.name)}
+                            </Avatar>
+                        </Link>
                     </Col>
                     <Col span={19}>
                         <h1 style={{color: 'white'}}>文本分类助手</h1>

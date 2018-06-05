@@ -31,10 +31,10 @@ class Home extends Component {
      }
      render(){
          return (
-            <div>
+            <div style={{height: '100%', maxHeight: '800px',overflow: 'scroll'}}>
                 <Row>
                     <Col span={8}>
-                        <div style={{padding: '0 20',borderRight: '1px solid #D3D3D3'}}>
+                        <div style={{padding: '0 20',borderRight: '1px solid #D3D3D3',maxHeight: '710px',overflow: 'scroll'}}>
                             <h2 style={{borderBottom: '1px dotted gray', padding: 20}}>我的收藏</h2>
                             <List
                                 className="demo-loadmore-list"

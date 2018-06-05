@@ -92,7 +92,7 @@ class Add extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{minHeight: '710px'}}>
                 <h2>添加收藏</h2>
                 {
                     !this.state.isFile && (

@@ -8,7 +8,7 @@ class SearchComponent extends Component {
     }
     render(){
         return (
-            <div>
+            <div style={{minHeight: '710px'}}>
                 <h2>搜索内容</h2>
                 <Search
                 placeholder="搜索内容"

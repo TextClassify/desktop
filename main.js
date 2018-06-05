@@ -13,7 +13,7 @@ function createWindow () {
         }
     });
 
-    win = new BrowserWindow({width: 800, height: 600});
+    win = new BrowserWindow({width: 1200, height: 800, resizable: false});
     win.webContents.openDevTools();
 
     // 然后加载应用的 index.html。

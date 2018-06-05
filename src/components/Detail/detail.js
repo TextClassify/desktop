@@ -11,17 +11,19 @@ class Detail extends Component {
         }
     }
     componentDidMount(){
-        this.readContent();
+        this.readContent(this.props.path);
     }
-    componentDidUpdate(){
-        this.readContent();
+    componentWillReceiveProps(nextProps){
+        if(nextProps.path !== this.props.path){
+            this.readContent(nextProps.path);
+        }
     }
     transferPath(_path){
         let arr =  _path.split("/");
         return arr[arr.length - 1];
      }
-    readContent(){
-        fs.readFile(this.props.path,(err,data)=>{
+    readContent(_path){
+        fs.readFile(_path,(err,data)=>{
             if(err){
                 this.setState({
                     content: '读取内容出错'
@@ -29,14 +31,14 @@ class Detail extends Component {
                 return;
             }
             this.setState({
-                title: this.transferPath(this.props.path),
+                title: this.transferPath(_path),
                 content: data.toString()
             })
         });
     }
     render(){
         return (
-            <div style={{padding: 20}}>
+            <div style={{padding: 20,minHeight: '710px'}}>
                 <h2 style={{borderBottom: '1px dotted gray'}}>
                     <Row>
                         <Col span={20}>{this.state.title}</Col>
