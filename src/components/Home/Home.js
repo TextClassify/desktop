@@ -1,8 +1,8 @@
 /* eslint-disable import/first */
 import React, { Component } from 'react';
-import { Row, Col, List, Avatar } from 'antd';
-import {Link} from 'react-router';
+import { Row, Col } from 'antd';
 import Detail from '../Detail/detail';
+import List from '../List/List'
 
 const fs = require('fs');
 const csv = require('csvtojson');
@@ -16,43 +16,35 @@ class Home extends Component {
             selectedIndex: 0
         }
      }
-     transferPath(_path){
-        let arr =  _path.split("/");
-        return arr[arr.length - 1];
-     }
      componentDidMount(){
         csv()
             .fromFile(toLocalStorage)
             .then(jsonObj=>{
                 this.setState({
-                    data: jsonObj.reverse()
+                    data: this.filterByClass(jsonObj)
                 });
             });
+     }
+     filterByClass(sourceData){
+        let classToShow = this.props.params.class;
+        if(!classToShow){
+            return sourceData.reverse();
+        }
+        return sourceData.filter(item=>{
+            return item.class === classToShow;
+        }).reverse();
+     }
+     handleIndexChanged(i){
+         this.setState({
+             selectedIndex: i
+         });
      }
      render(){
          return (
             <div style={{height: '100%', maxHeight: '800px',overflow: 'scroll'}}>
                 <Row>
                     <Col span={8}>
-                        <div style={{padding: '0 20',borderRight: '1px solid #D3D3D3',maxHeight: '710px',overflow: 'scroll'}}>
-                            <h2 style={{borderBottom: '1px dotted gray', padding: 20}}>我的收藏</h2>
-                            <List
-                                className="demo-loadmore-list"
-                                itemLayout="horizontal"
-                                dataSource={this.state.data}
-                                renderItem={(item,i) => (
-                                <List.Item onClick={()=>this.setState({
-                                    selectedIndex: i
-                                })} style={{backgroundColor: i===this.state.selectedIndex?'#D3D3D3':'' }}>
-                                    <List.Item.Meta
-                                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                    title={<span>{this.transferPath(item.path)}</span>}
-                                    description={item.class}
-                                    />
-                                </List.Item>
-                                )}
-                            />
-                        </div>
+                        <List data={this.state.data} title="我的收藏" changeIndexBubble={this.handleIndexChanged.bind(this)}/>
                     </Col>
                     <Col span={16}>
                         {
