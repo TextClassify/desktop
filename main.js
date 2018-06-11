@@ -2,17 +2,19 @@ const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
-const toWriteResult = require('./src/config').toLocalStorage;
+const { toLocalStorage, toLocalStorageContent } = require('./src/config');
 
 function createWindow () {
     // Create the browser window.
-    fs.access(toWriteResult, fs.constants.R_OK | fs.constants.W_OK, (err) => {
-        if(err){
-            fs.writeFileSync(toWriteResult,"path,class");
-        }
+    mkdirp(toLocalStorageContent,err=>{
+        fs.access(toLocalStorage, fs.constants.R_OK | fs.constants.W_OK, (err) => {
+            if(err){
+                fs.writeFileSync(toLocalStorage,"path,class");
+            }
+        });
     });
-
     win = new BrowserWindow({width: 1200, height: 800, resizable: false});
     win.webContents.openDevTools();
 

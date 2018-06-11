@@ -71,6 +71,11 @@ class SearchComponent extends Component {
                         </Row>
                     </div>
                 }
+                {
+                    this.state.searchResult.length <= 0 && (
+                        <div>暂无搜索结果，要不试试其他关键词？</div>
+                    )
+                }
             </div>
         )
     }
