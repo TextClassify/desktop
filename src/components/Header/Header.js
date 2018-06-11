@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, Row, Col, Avatar } from 'antd';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 const Search = Input.Search;
 
 class Header extends Component {
@@ -20,6 +20,9 @@ class Header extends Component {
     getAvatar(name){
         return name ? name[0].toUpperCase() : '无'
     }
+    handleSearch(value){
+        browserHistory.push('/search/'+value);
+    }
     render(){
         return (
             <div>
@@ -37,7 +40,7 @@ class Header extends Component {
                     <Col span={4}>
                     <Search
                         placeholder="搜索内容"
-                        onSearch={value => console.log(value)}
+                        onSearch={value => this.handleSearch(value)}
                         style={{ width: 200 }}
                     />
                     </Col>

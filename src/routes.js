@@ -19,7 +19,7 @@ const routes = (
         <Route path="/home/:class" component={Home}/>
         <Route path="/folder" component={Foler}/>
         <Route path="/add" component={Add}/>
-        <Route path="/search" component={Search}/>
+        <Route path="/search/:term" component={Search}/>
         <Route path="/about" component={About}/>
         <Route path="/share" component={Share}/>
 

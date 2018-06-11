@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Input } from 'antd';
+import { Input, Row, Col } from 'antd';
 import List from '../List/List';
+import Detail from '../Detail/detail';
 const Search = Input.Search;
 
 const fs = require('fs');
@@ -13,17 +14,27 @@ class SearchComponent extends Component {
         super(props);
         this.state = {
             data: [],
-            searchResult: []
+            searchResult: [],
+            selectedIndex: 0
         }
     }
     componentDidMount(){
+        let term = this.props.params.term
         csv()
             .fromFile(toLocalStorage)
             .then(jsonObj=>{
                 this.setState({
                     data: jsonObj
                 });
+                if(term !== 'all'){
+                    this.handleSearch(term);
+                }
             });
+    }
+    componentWillReceiveProps(nextProps){
+        if(nextProps.params.term !== this.props.params.term){
+            this.handleSearch(nextProps.params.term);
+        }
     }
     handleSearch(value){
         let result = this.state.data.filter(item=>{
@@ -31,6 +42,11 @@ class SearchComponent extends Component {
         });
         this.setState({
             searchResult: result
+        });
+    }
+    handleIndexChanged(i){
+        this.setState({
+            selectedIndex: i
         });
     }
     render(){
@@ -44,7 +60,16 @@ class SearchComponent extends Component {
                 enterButton
                 />
                 {
-                    this.state.searchResult.length > 0 && <List data={this.state.searchResult} title="搜索结果"/>
+                    this.state.searchResult.length > 0 && <div style={{marginTop: '30px'}}>
+                         <Row>
+                            <Col span={8}>
+                                <List data={this.state.searchResult} title="搜索结果" changeIndexBubble={this.handleIndexChanged.bind(this)} />
+                            </Col>
+                            <Col span={16}>
+                                <Detail path={this.state.searchResult[this.state.selectedIndex]['path']} />
+                            </Col>
+                        </Row>
+                    </div>
                 }
             </div>
         )
