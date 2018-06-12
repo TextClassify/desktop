@@ -93,21 +93,21 @@ class Add extends Component {
     render() {
         return (
             <div style={{minHeight: '710px'}}>
-                <h2>添加收藏</h2>
+                <h2 style={{margin:20,marginLeft:20}}>添加收藏</h2>
                 {
                     !this.state.isFile && (
                         <div>
-                            <Input placeholder="输入标题" onChange={e=>this.setState({inputTitle: e.target.value})} value={this.state.inputTitle}/><br/><br/>
-                            <TextArea rows={4} value={this.state.inputContent} onChange={e=> this.setState({inputContent: e.target.value})} />
-                            <Button type="primary" disabled={!this.state.inputContent} onClick={ e=> this.handleCommit(this.state.inputContent,true)}>提交分类</Button>
-                            <Button type="primary" onClick={()=>this.setState({isFile: true})}>本地文件</Button>
+                            <Input style={{width:500,marginLeft:20,height:40}} placeholder="输入标题" onChange={e=>this.setState({inputTitle: e.target.value})} value={this.state.inputTitle}/><br/><br/>
+                            <TextArea style={{height:500,marginLeft:20,width:1180}} rows={4} value={this.state.inputContent} onChange={e=> this.setState({inputContent: e.target.value})} />
+                            <Button style={{margin:20,marginLeft:20}} type="primary" disabled={!this.state.inputContent} onClick={ e=> this.handleCommit(this.state.inputContent,true)}>提交分类</Button>
+                            <Button style={{marginLeft:20}} type="primary" onClick={()=>this.setState({isFile: true})}>本地文件</Button>
                         </div>
                     )
                 }
                 {
                     this.state.isFile && (
                         <div>
-                            <Search
+                            <Search style={{width:800,marginLeft:20}}
                             placeholder="选择本地文件"
                             enterButton="选取"
                             size="large"
@@ -116,8 +116,8 @@ class Add extends Component {
                             onSearch={() => this.showFileDialog()}
                             />
                             <br/><br/>
-                            <Button type="primary" onClick={()=> this.handleSubmit()} disabled={!this.state.selectFile}>提交分类</Button>
-                            <Button type="primary" onClick={()=>this.setState({isFile: false})}>手动输入内容</Button>
+                            <Button style={{marginLeft:20}} type="primary" onClick={()=> this.handleSubmit()} disabled={!this.state.selectFile}>提交分类</Button>
+                            <Button style={{marginLeft:30}} type="primary" onClick={()=>this.setState({isFile: false})}>手动输入内容</Button>
                         </div>
                     )
                 }

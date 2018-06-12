@@ -10,7 +10,7 @@ const Style = {
     height: '100%'
   },
   iconStyle: {
-    fontSize: 30
+    fontSize: 20,
   }
 }
 

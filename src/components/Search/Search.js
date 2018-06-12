@@ -52,8 +52,8 @@ class SearchComponent extends Component {
     render(){
         return (
             <div style={{minHeight: '710px'}}>
-                <h2>搜索内容</h2>
-                <Search
+                <h2 style={{margin:20,marginLeft:20}}>搜索内容</h2>
+                <Search style={{width:1180,marginLeft:20}}
                 placeholder="搜索内容"
                 onSearch={value=>this.handleSearch(value)}
                 size="large"
@@ -73,7 +73,7 @@ class SearchComponent extends Component {
                 }
                 {
                     this.state.searchResult.length <= 0 && (
-                        <div>暂无搜索结果，要不试试其他关键词？</div>
+                        <div style={{margin:20,marginLeft:400}}>暂无搜索结果，要不试试其他关键词？</div>
                     )
                 }
             </div>

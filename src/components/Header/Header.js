@@ -29,13 +29,13 @@ class Header extends Component {
                 <Row>
                     <Col span={1}>
                         <Link to="/user">
-                            <Avatar style={{ backgroundColor: '#f56a00', verticalAlign: 'middle' }} size='large'>
+                            <Avatar style={{ backgroundColor: '#6495ED', verticalAlign: 'middle' }} size='middle'>
                                 {this.getAvatar(this.state.userInfo.name)}
                             </Avatar>
                         </Link>
                     </Col>
                     <Col span={19}>
-                        <h1 style={{color: 'white'}}>文本分类助手</h1>
+                        <h1 style={{color: 'white',margin:1,marginLeft:3,fontSize:25}}>文本分类助手</h1>
                     </Col>
                     <Col span={4}>
                     <Search

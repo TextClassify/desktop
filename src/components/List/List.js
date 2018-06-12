@@ -27,9 +27,9 @@ class ListComponent extends Component {
                     itemLayout="horizontal"
                     dataSource={this.props.data}
                     renderItem={(item,i) => (
-                    <List.Item onClick={()=>this.handleChangeIndex(i)} style={{backgroundColor: i===this.state.selectedIndex?'#D3D3D3':'' }}>
+                    <List.Item onClick={()=>this.handleChangeIndex(i)} style={{border:i===this.state.selectedIndex?'2px solid #7EC0EE':'' ,backgroundColor: i===this.state.selectedIndex?'#FCFCFC':'' }}>
                         <List.Item.Meta
-                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                        style={{marginLeft:10}}
                         title={<span>{this.transferPath(item.path)}</span>}
                         description={item.class}
                         />

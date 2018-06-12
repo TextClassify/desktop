@@ -44,7 +44,7 @@ class Home extends Component {
             <div style={{height: '100%', maxHeight: '800px',overflow: 'scroll'}}>
                 <Row>
                     <Col span={8}>
-                        <List data={this.state.data} title={this.props.params.class||'所有收藏'} changeIndexBubble={this.handleIndexChanged.bind(this)}/>
+                        <List data={this.state.data} title={this.props.params.class||<div style={{margin:'0',textAlign: 'center'}}>所有收藏</div>} changeIndexBubble={this.handleIndexChanged.bind(this)}/>
                     </Col>
                     <Col span={16}>
                         {
