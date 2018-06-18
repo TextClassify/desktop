@@ -53,7 +53,7 @@ class SearchComponent extends Component {
         return (
             <div style={{minHeight: '710px'}}>
                 <h2 style={{margin:20,marginLeft:20}}>搜索内容</h2>
-                <Search style={{width:1180,marginLeft:20}}
+                <Search
                 placeholder="搜索内容"
                 onSearch={value=>this.handleSearch(value)}
                 size="large"
